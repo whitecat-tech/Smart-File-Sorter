@@ -1,0 +1,48 @@
+from pathlib import Path
+import shutil
+
+audio_count = 0
+video_count = 0
+picture_count = 0
+
+# Define source folder：
+user_input = input("Please enter the path to the folder you need to organize: ")
+folder = Path(user_input.strip())
+
+# Automatically create the target folder (using folder / 'name' to dynamically concatenate the path).
+audio_dir = folder / 'audio'
+video_dir = folder / 'video'
+picture_dir = folder / 'picture'
+
+audio_dir.mkdir(exist_ok=True)
+video_dir.mkdir(exist_ok=True)
+picture_dir.mkdir(exist_ok=True)
+
+audio_exts = ['.mp3', '.flac', '.wav', '.m4a']
+video_exts = ['.mp4', '.mkv', '.avi', '.mov']
+picture_exts = ['.jpg', '.jpeg', '.png', '.gif']
+
+print("🚀 Whitecat-tech The intelligent file classifier has started running...")
+
+for file in folder.iterdir():
+    # Make sure to process only files, skipping the folders we just created.
+    if file.is_file():
+        # Data standardization: Forced conversion to lowercase
+        ext = file.suffix.lower()
+        
+        if ext in audio_exts:
+            shutil.move(file, audio_dir)
+            audio_count += 1
+        elif ext in video_exts:
+            shutil.move(file, video_dir)
+            video_count += 1
+        elif ext in picture_exts:
+            shutil.move(file, picture_dir)
+            picture_count += 1
+
+print("---" * 10)
+print(f'✨ Processed! This batch of files has been archived:')
+print(f'🎵 audio files:{audio_count} quantity')
+print(f'🎬 video file:{video_count} quantity')
+print(f'🖼️ Image file:{picture_count} quantity')
+print("---" * 10)
