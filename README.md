@@ -1,39 +1,38 @@
-# Smart File Classifier 🚀
+# Smart File Sorter v2.0 🚀
 
-A lightweight, automated Python script designed to organize messy directories instantly. It scans a target folder and automatically categorizes audio, video, and picture files into their respective folders.
+[🇨🇳 简体中文版](./README_zh.md) | [🇬🇧 English]
 
-This tool was born out of a real-world necessity. Working in customer service, I handled dozens of media files sent by clients daily. Manually sorting them was a tedious, time-consuming task—so I built this automation tool to reduce a 10-minute daily chore into a 3-second click.
+A modern, desktop-based Python application designed to instantly organize messy directories and eliminate duplicate files with a single click. It features a native Graphical User Interface (GUI) and cryptographic file deduplication.
 
 ---
 
 ## ✨ Features
 
-- **Dynamic Path Input**: Allows users to specify any folder path dynamically at runtime.
-- **Data Standardization**: Automatically handles mixed-case file extensions (e.g., `.JPG`, `.Jpg`, and `.jpg` are all treated equally).
-- **Safety First**: Uses `is_file()` checks to prevent moving existing directories or core system folders by mistake.
-- **Smart Directory Creation**: Automatically generates target folders (`audio`, `video`, `picture`) if they don't already exist.
-- **Real-time Metrics**: Displays a clean summary counting exactly how many files were successfully archived.
+- **Native Desktop GUI**: Powered by `tkinter`. Integrated with a native **"Browse Folder"** directory picker for a seamless, mouse-driven user experience. No more terminal commands!
+- **Smart Deduplication (Core Feature)**: Uses **MD5 cryptographic hashing** to read file fingerprints byte-by-byte via a stream buffer (`8192` bytes). It catches duplicates even if they have completely different filenames.
+- **Safety First**: Duplicates are safely isolated into a dedicated `/duplicates` directory instead of being deleted permanently.
 
 ---
 
 ## 🛠️ Supported Formats
 
-| Category | Supported Extensions |Target Folder |
+| Category | Supported Extensions | Target Folder |
 | :--- | :--- | :--- |
 | 🎵 **Audio** | `.mp3`, `.flac`, `.wav`, `.m4a` | `/audio` |
 | 🎬 **Video** | `.mp4`, `.mkv`, `.avi`, `.mov` | `/video` |
 | 🖼️ **Picture** | `.jpg`, `.jpeg`, `.png`, `.gif` | `/picture` |
+| 👯 **Duplicates** | *Content Identical* | `/duplicates` |
 
 ---
 
 ## 🚀 How to Run
 
 ### Prerequisites
-Make sure you have Python 3.x installed on your system.
+Make sure you have Python 3.x installed on your system. This software relies completely on Python's standard libraries—**no external pip installations required!**
 
 ### Steps
-1. Clone or download this repository.
-2. Open your terminal or command prompt.
-3. Run the script using:
+1. Clone or download this repository to your local machine.
+2. Open your terminal/command prompt and navigate to the project directory.
+3. Run the English GUI version:
    ```bash
-   python p.py
+   python app_en.py
